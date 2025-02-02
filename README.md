@@ -1,44 +1,99 @@
-# Mentoring
+# 📚 Mentoring-Site
 
-This app was created with Bootify.io - tips on working with the code [can be found here](https://bootify.io/next-steps/).
+## 개요
+멘토링 웹프로젝는 **Spring Boot**와 **MySQL**을 기반으로 개발된 플랫폼으로, 멘토와 멘티 간의 원활한 소통과 멘토링 관리를 지원합니다.  
+사용자는 멘토, 멘티, 학생, 관리자 역할(Role)로 나뉘며, 각각의 권한에 따라 다양한 기능을 제공합니다.
 
-## Development
+---
 
-Update your local database connection in `application.yml` or create your own `application-local.yml` file to override
-settings for development.
+## 주요 기능
 
-During development it is recommended to use the profile `local`. In IntelliJ `-Dspring.profiles.active=local` can be
-added in the VM options of the Run Configuration after enabling this property in "Modify options".
+### 🔐 회원가입 및 로그인
+- Spring Security 기반의 **인증 및 인가 시스템** 구현.
+- 사용자 역할(멘토, 멘티, 학생, 관리자)에 따른 **권한 관리** 적용.
 
-After starting the application it is accessible under `localhost:8080`.
+### 📢 공지 게시판
+- 관리자 및 운영자가 공지사항을 게시하고, 사용자가 확인할 수 있는 기능.
 
-## Build
+### 📋 멘토링 목록
+- 진행 중인 **멘토링 프로그램 목록 조회**.
+- 멘토 및 멘티가 각자의 상태에 맞는 정보를 확인 가능.
 
-The application can be built using the following command:
+### 📝 멘티의 멘토링 신청
+- 멘티는 원하는 멘토링 세션을 검색하고 신청할 수 있음.
+- 멘토는 신청 요청을 검토 후 승인/거절 가능.
 
-```
-gradlew clean build
-```
+### 📂 멘토 보고서 제출 게시판
+- **주차별 보고서 관리** 및 **필터링 기능** 제공.
+- 멘토는 각 주차별로 보고서를 업로드하고, 멘티 및 관리자는 내용을 확인 가능.
+- 파일 업로드 및 다운로드 기능을 지원.
+- **멘토와 관리자 간 댓글 기능**을 통해 피드백 제공 가능.
 
-Start your application with the following command - here with the profile `production`:
+### ⚙ 관리자 페이지 (Admin)
+- 멘토링 세션 관리 및 사용자 계정 관리 기능 포함.
+- 멘토링 신청 승인 및 보고서 검토 기능.
 
-```
-java -Dspring.profiles.active=production -jar ./build/libs/Mentoring-0.0.1-SNAPSHOT.jar
-```
+---
 
-If required, a Docker image can be created with the Spring Boot plugin. Add `SPRING_PROFILES_ACTIVE=production` as
-environment variable when running the container.
+## 기술 스택
+- **Backend:** Spring Boot, MySQL, JPA
+- **Security:** Spring Security, JWT
+- **Frontend:** (프론트엔드 정보 추가 가능)
+- **Build & Deployment:** Gradle/Maven, Docker (추가 가능)
+- **Version Control:** Git, GitHub
 
-```
-gradlew bootBuildImage --imageName=pnu.ibe.justice/mentoring
-```
+---
 
-## Further readings
+## ERD 및 데이터베이스 설계
+- 데이터 무결성을 유지하도록 **테이블 설계 및 관계 설정**.
+- UUID 속성을 사용하여 **파일 및 게시판 데이터 관리**.
+- JPA를 이용한 **CRUD 기능 구현**.
 
-* [Gradle user manual](https://docs.gradle.org/)  
-* [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
-* [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/reference/jpa.html)
-* [Thymeleaf docs](https://www.thymeleaf.org/documentation.html)  
-* [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)  
-* [Htmx in a nutshell](https://htmx.org/docs/)  
-* [Learn Spring Boot with Thymeleaf](https://www.wimdeblauwe.com/books/taming-thymeleaf/)  
+---
+
+## 배운 점 및 향후 개선 사항
+
+### ✔ 배운 점
+- **Spring Boot 기반의 백엔드 개발**  
+  - RESTful API 설계 및 데이터베이스 연동을 통해 **효율적인 서버 구축 경험**을 쌓음.
+  - 서비스와 컨트롤러 계층을 나누어 **클린 아키텍처**를 적용하는 방식을 학습.
+
+- **사용자 권한 관리 및 보안 강화**  
+  - Spring Security와 JWT를 활용하여 **멘토, 멘티, 학생, 관리자 역할(Role)** 별 권한을 분리.
+  - 인증 및 인가 시스템을 설계하면서 **보안에 대한 이해도 향상**.
+
+- **파일 업로드 및 데이터 관리 최적화**  
+  - **UUID 속성을 활용한 파일 및 게시판 데이터 분리**를 통해 데이터 무결성을 유지하는 방법을 배움.
+  - 멘토 보고서 제출 시 **주차별 필터링 기능 구현**, 댓글을 통한 피드백 기능 추가.
+
+- **데이터베이스 설계 및 성능 고려**  
+  - MySQL을 활용하여 **효율적인 테이블 설계 및 관계 설정**을 학습.
+  - JPA를 사용하여 CRUD 기능을 구현하고, 성능 최적화를 고민하는 과정에서 **ORM 활용 경험**을 쌓음.
+
+---
+
+### 🚀 향후 개선 사항
+- **멘토링 추천 시스템 구현**  
+  - 멘토링 신청 시 멘티와 가장 적합한 멘토를 추천하는 알고리즘 도입.
+
+- **실시간 알림 시스템 추가**  
+  - 멘토링 신청, 보고서 제출, 승인 여부 등의 상태 변화를 **웹소켓을 활용한 실시간 알림 시스템**으로 개선.
+
+- **관리자 대시보드 강화**  
+  - **멘토링 현황, 신청 내역, 보고서 제출 현황을 한눈에 볼 수 있도록 시각화**된 관리자 대시보드 추가.
+
+- **프론트엔드 개선 및 반응형 UI 적용**  
+  - 현재는 백엔드 중심으로 개발되어 있으므로, **React 또는 Vue.js**를 사용한 프론트엔드 개선.
+  - 모바일 및 태블릿에서도 원활하게 사용할 수 있도록 **반응형 디자인 적용**.
+
+
+---
+
+## 📢 참고 자료
+- [Spring Boot 공식 문서](https://spring.io/projects/spring-boot)
+- [MySQL 공식 문서](https://dev.mysql.com/doc/)
+- [Spring Security 공식 문서](https://spring.io/projects/spring-security)
+- [JPA & Hibernate 공식 문서](https://hibernate.org/orm/documentation/)
+- [JWT Authentication Guide](https://jwt.io/)
+
+
